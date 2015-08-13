@@ -436,14 +436,14 @@ int main(int argc, char **argv)
         printf("%u.%06u\n", t.tv_sec, t.tv_usec);
 #endif
 
-
-printf(" %d %d %d %d %d %d \r", 
-    EC_READ_BIT(domain1_pd + el1252_1.offset_in[0], el1252_1.bit_pos_in[0]),
-    EC_READ_BIT(domain1_pd + el1252_1.offset_in[1], el1252_1.bit_pos_in[1]),
-    EC_READ_BIT(domain1_pd + el1252_2.offset_in[0], el1252_2.bit_pos_in[0]),
-    EC_READ_BIT(domain1_pd + el1252_2.offset_in[1], el1252_2.bit_pos_in[1]),
-    EC_READ_BIT(domain1_pd + el1252_3.offset_in[0], el1252_3.bit_pos_in[0]),
-    EC_READ_BIT(domain1_pd + el1252_3.offset_in[1], el1252_3.bit_pos_in[1]) );
+        // print digital input data
+        printf(" %d %d %d %d %d %d \r", 
+          EC_READ_BIT(domain1_pd + el1252_1.offset_in[0], el1252_1.bit_pos_in[0]),
+          EC_READ_BIT(domain1_pd + el1252_1.offset_in[1], el1252_1.bit_pos_in[1]),
+          EC_READ_BIT(domain1_pd + el1252_2.offset_in[0], el1252_2.bit_pos_in[0]),
+          EC_READ_BIT(domain1_pd + el1252_2.offset_in[1], el1252_2.bit_pos_in[1]),
+          EC_READ_BIT(domain1_pd + el1252_3.offset_in[0], el1252_3.bit_pos_in[0]),
+          EC_READ_BIT(domain1_pd + el1252_3.offset_in[1], el1252_3.bit_pos_in[1]) );
 
         while (sig_alarms != user_alarms) {
             cyclic_task();
