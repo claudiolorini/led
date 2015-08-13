@@ -231,12 +231,13 @@ static void write_process_data_el2202() {
     EC_WRITE_BIT(domain1_pd + el2202_2.offset_tristate[1], el2202_2.bit_pos_tristate[1], 0x00);
     EC_WRITE_BIT(domain1_pd + el2202_3.offset_tristate[0], el2202_3.bit_pos_tristate[0], 0x00);
     EC_WRITE_BIT(domain1_pd + el2202_3.offset_tristate[1], el2202_3.bit_pos_tristate[1], 0x00);
-    EC_WRITE_BIT(domain1_pd + el2202_1.offset_out[0], el2202_1.bit_pos_out[0], blink ? 0x01 : 0x00);
-    EC_WRITE_BIT(domain1_pd + el2202_1.offset_out[1], el2202_1.bit_pos_out[1], blink ? 0x00 : 0x01);
+
+    EC_WRITE_BIT(domain1_pd + el2202_1.offset_out[0], el2202_1.bit_pos_out[0], blink ? 0x00 : 0x01);
+    EC_WRITE_BIT(domain1_pd + el2202_1.offset_out[1], el2202_1.bit_pos_out[1], blink ? 0x01 : 0x00);
     EC_WRITE_BIT(domain1_pd + el2202_2.offset_out[0], el2202_2.bit_pos_out[0], blink ? 0x00 : 0x01);
     EC_WRITE_BIT(domain1_pd + el2202_2.offset_out[1], el2202_2.bit_pos_out[1], blink ? 0x01 : 0x00);
-    EC_WRITE_BIT(domain1_pd + el2202_3.offset_out[0], el2202_3.bit_pos_out[0], blink ? 0x01 : 0x00);
-    EC_WRITE_BIT(domain1_pd + el2202_3.offset_out[1], el2202_3.bit_pos_out[1], blink ? 0x00 : 0x01);
+    EC_WRITE_BIT(domain1_pd + el2202_3.offset_out[0], el2202_3.bit_pos_out[0], blink ? 0x00 : 0x01);
+    EC_WRITE_BIT(domain1_pd + el2202_3.offset_out[1], el2202_3.bit_pos_out[1], blink ? 0x01 : 0x00);
 }
 
 /****************************************************************************/
@@ -377,7 +378,7 @@ int main(int argc, char **argv)
 
 #if SDO_ACCESS
     fprintf(stderr, "Creating SDO requests...\n");
-    if (!(sdo = ecrt_slave_config_create_sdo_request(el2202.config, 
+    if (!(sdo = ecrt_slave_config_create_sdo_request(el2202_1.config, 
 						     slave_1_pdo_entries[0].index, 
 						     slave_1_pdo_entries[0].subindex, 
 						     slave_1_pdo_entries[0].bitlength))) {
@@ -434,6 +435,15 @@ int main(int argc, char **argv)
         gettimeofday(&t, NULL);
         printf("%u.%06u\n", t.tv_sec, t.tv_usec);
 #endif
+
+
+printf(" %d %d %d %d %d %d \r", 
+    EC_READ_BIT(domain1_pd + el1252_1.offset_in[0], el1252_1.bit_pos_in[0]),
+    EC_READ_BIT(domain1_pd + el1252_1.offset_in[1], el1252_1.bit_pos_in[1]),
+    EC_READ_BIT(domain1_pd + el1252_2.offset_in[0], el1252_2.bit_pos_in[0]),
+    EC_READ_BIT(domain1_pd + el1252_2.offset_in[1], el1252_2.bit_pos_in[1]),
+    EC_READ_BIT(domain1_pd + el1252_3.offset_in[0], el1252_3.bit_pos_in[0]),
+    EC_READ_BIT(domain1_pd + el1252_3.offset_in[1], el1252_3.bit_pos_in[1]) );
 
         while (sig_alarms != user_alarms) {
             cyclic_task();
