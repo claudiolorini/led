@@ -5,11 +5,13 @@ A test EtherCat/EtherLab based application that turns LEDs on and off (based on 
 
 The code here assumes the following setup for the ethercat slaves (`ethercat slaves` command):
 
-	0  0:0  PREOP  +  EK1100 EtherCAT-Koppler (2A E-Bus)
-	1  0:1  PREOP  +  EL2202 2K. Dig. Ausgang 24V, 0.5A
-	2  0:2  PREOP  +  EL1252 2K. Fast Dig. Eingang 24V, 1us, DC Latch
-	3  0:3  PREOP  +  EL1252 2K. Fast Dig. Eingang 24V, 1us, DC Latch
-	4  0:4  PREOP  +  EL2252 2K. Dig. Ausgang 24V, 0.5A, DC Time Stamp
+  0  0:0  PREOP  +  EK1100 EtherCAT-Koppler (2A E-Bus)
+  1  0:1  PREOP  +  EL1252 2K. Fast Dig. Eingang 24V, 1�s, DC Latch
+  2  0:2  PREOP  +  EL2202 2K. Dig. Ausgang 24V, 0.5A
+  3  0:3  PREOP  +  EL2202 2K. Dig. Ausgang 24V, 0.5A
+  4  0:4  PREOP  +  EL1252 2K. Fast Dig. Eingang 24V, 1�s, DC Latch
+  5  0:5  PREOP  +  EL2202 2K. Dig. Ausgang 24V, 0.5A
+  6  0:6  PREOP  +  EL1252 2K. Fast Dig. Eingang 24V, 1�s, DC Latch
 
 The application sets a timer to run the `cyclic_task()` routine `FREQUENCY` times per second.
 This routine should normally check the current input and output states.
