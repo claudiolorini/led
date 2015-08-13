@@ -5,13 +5,13 @@ A test EtherCat/EtherLab based application that turns LEDs on and off (based on 
 
 The code here assumes the following setup for the ethercat slaves (`ethercat slaves` command):
 
-  0:0  EK1100
-  0:1  EL1252
-  0:2  EL2202
-  0:3  EL2202
-  0:4  EL1252
-  0:5  EL2202
-  0:6  EL1252
+0:0  EK1100
+0:1  EL1252
+0:2  EL2202
+0:3  EL2202
+0:4  EL1252
+0:5  EL2202
+0:6  EL1252
 
 The application sets a timer to run the `cyclic_task()` routine `FREQUENCY` times per second.
 This routine should normally check the current input and output states.
